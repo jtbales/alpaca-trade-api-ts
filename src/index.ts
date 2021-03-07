@@ -1,62 +1,64 @@
-export { AlpacaClient } from './client.js'
-export { AlpacaStream } from './stream.js'
+export { AlpacaClient } from './client.js';
+export { AlpacaStream } from './stream.js';
 
-import { AlpacaClient } from './client.js'
-import { AlpacaStream } from './stream.js'
+import { AlpacaClient } from './client.js';
+import { AlpacaStream } from './stream.js';
 
 export default {
   AlpacaClient: AlpacaClient,
   AlpacaStream: AlpacaStream,
-}
+};
 
 export {
   Account,
+  AccountConfigurations,
+  Activity,
+  Asset,
+  Bar,
+  Calendar,
+  Channel,
+  Clock,
+  DataSource,
+  DefaultCredentials,
+  Message,
+  NonTradeActivity,
+  OAuthCredentials,
   Order,
   OrderCancelation,
-  Position,
-  Asset,
-  Watchlist,
-  Calendar,
-  Clock,
-  DefaultCredentials,
-  OAuthCredentials,
-  AccountConfigurations,
-  NonTradeActivity,
-  TradeActivity,
-  Activity,
-  PortfolioHistory,
-  Bar,
-  Quote,
-  Trade,
+  OrderStatus,
   PageOfBars,
   PageOfQuotes,
   PageOfTrades,
-  DataSource,
-  Channel,
-  Message,
-} from './entities'
+  PortfolioHistory,
+  Position,
+  Quote,
+  Trade,
+  TradeUpdate,
+  TradeActivity,
+  Watchlist,
+} from './entities';
 
 export {
-  GetOrder,
-  GetOrders,
-  PlaceOrder,
-  ReplaceOrder,
+  AddToWatchList,
   CancelOrder,
-  GetPosition,
   ClosePosition,
+  CreateWatchList,
+  DeleteWatchList,
+  GetAccountActivities,
   GetAsset,
   GetAssets,
-  GetWatchList,
-  CreateWatchList,
-  UpdateWatchList,
-  AddToWatchList,
-  RemoveFromWatchList,
-  DeleteWatchList,
-  GetCalendar,
-  UpdateAccountConfigurations,
-  GetAccountActivities,
-  GetPortfolioHistory,
   GetBars,
-  GetTrades,
+  GetCalendar,
+  GetOrder,
+  GetOrders,
+  GetPortfolioHistory,
+  GetPosition,
   GetQuotes,
-} from './params'
+  GetTrades,
+  GetWatchList,
+  PlaceOrder,
+  RemoveFromWatchList,
+  ReplaceOrder,
+  UpdateAccountConfigurations,
+  UpdateWatchList,
+} from './params';
