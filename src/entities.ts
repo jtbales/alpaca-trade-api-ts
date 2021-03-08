@@ -814,7 +814,7 @@ export interface Order {
   /**
    * Get the raw data, exactly as it came from Alpaca
    */
-  raw(): RawOrder;
+  raw?: () => RawOrder;
 
   /**
    * Order id
@@ -829,32 +829,32 @@ export interface Order {
   /**
    * When the order was created
    */
-  created_at: Date;
+  created_at: Date | null;
 
   /**
    * When the order was last updated
    */
-  updated_at: Date;
+  updated_at: Date | null;
 
   /**
    * When the order was submitted
    */
-  submitted_at: Date;
+  submitted_at: Date | null;
 
   /**
    * When the order was filled
    */
-  filled_at: Date;
+  filled_at: Date | null;
 
   /**
    * When the order expired
    */
-  expired_at: Date;
+  expired_at: Date | null;
 
   /**
    * When the order was canceled
    */
-  canceled_at: Date;
+  canceled_at: Date | null;
 
   /**
    * When the order failed
@@ -864,17 +864,17 @@ export interface Order {
   /**
    * When the order was last replaced
    */
-  replaced_at: Date;
+  replaced_at: Date | null;
 
   /**
    * The order ID that this order was replaced by
    */
-  replaced_by: string;
+  replaced_by: string | null;
 
   /**
    * The order ID that this order replaces
    */
-  replaces: string;
+  replaces: string | null;
 
   /**
    * Asset ID
@@ -919,17 +919,17 @@ export interface Order {
   /**
    * Limit price
    */
-  limit_price: number;
+  limit_price: number | null;
 
   /**
    * Stop price
    */
-  stop_price: number;
+  stop_price: number | null;
 
   /**
    * Filled average price
    */
-  filled_avg_price: number;
+  filled_avg_price: number | null;
 
   /**
    * The status of the order
@@ -945,7 +945,7 @@ export interface Order {
    * When querying non-simple order_class orders in a nested style, an array of Order
    * entities associated with this order. Otherwise, null.
    */
-  legs: Order[];
+  legs: Order[] | null;
 
   /**
    * The dollar value away from the high water mark for trailing stop orders.
