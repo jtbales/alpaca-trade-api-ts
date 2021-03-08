@@ -34,6 +34,7 @@ export {
   Quote,
   Trade,
   TradeUpdate,
+  TradeFillUpdate,
   TradeActivity,
   Watchlist,
 } from './entities';
