@@ -1200,11 +1200,10 @@ export interface NonTradeActivity {
 }
 export declare type RawActivity = RawTradeActivity | RawNonTradeActivity;
 export declare type Activity = TradeActivity | NonTradeActivity;
-export interface TradeUpdate {
-    event: string;
+export declare type TradeUpdate = TradeUpdateBase | TradeFillUpdate;
+export declare type TradeUpdateBase = {
+    event: OrderStatus;
     price: string;
-    timestamp?: string;
-    position_qty?: string;
     order: {
         id: string;
         client_order_id: string;
@@ -1214,7 +1213,12 @@ export interface TradeUpdate {
         asset_class: string;
         side: string;
     };
-}
+};
+export declare type TradeFillUpdate = TradeUpdateBase & {
+    event: 'filled' | 'partially_filled';
+    timestamp: string;
+    position_qty: string;
+};
 export interface Watchlist {
     /**
      * account ID

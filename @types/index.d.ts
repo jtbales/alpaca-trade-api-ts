@@ -3,59 +3,9 @@ export { AlpacaStream } from './stream.js';
 import { AlpacaClient } from './client.js';
 import { AlpacaStream } from './stream.js';
 declare const _default: {
-  AlpacaClient: typeof AlpacaClient;
-  AlpacaStream: typeof AlpacaStream;
+    AlpacaClient: typeof AlpacaClient;
+    AlpacaStream: typeof AlpacaStream;
 };
 export default _default;
-export {
-  Account,
-  AccountConfigurations,
-  Activity,
-  Asset,
-  Bar,
-  Calendar,
-  Channel,
-  Clock,
-  DataSource,
-  DefaultCredentials,
-  Message,
-  NonTradeActivity,
-  OAuthCredentials,
-  Order,
-  OrderCancelation,
-  OrderStatus,
-  PageOfBars,
-  PageOfQuotes,
-  PageOfTrades,
-  PortfolioHistory,
-  Position,
-  Quote,
-  Trade,
-  TradeUpdate,
-  TradeActivity,
-  Watchlist,
-} from './entities';
-export {
-  AddToWatchList,
-  CancelOrder,
-  ClosePosition,
-  CreateWatchList,
-  DeleteWatchList,
-  GetAccountActivities,
-  GetAsset,
-  GetAssets,
-  GetBars,
-  GetCalendar,
-  GetOrder,
-  GetOrders,
-  GetPortfolioHistory,
-  GetPosition,
-  GetQuotes,
-  GetTrades,
-  GetWatchList,
-  PlaceOrder,
-  RemoveFromWatchList,
-  ReplaceOrder,
-  UpdateAccountConfigurations,
-  UpdateWatchList,
-} from './params';
+export { Account, AccountConfigurations, Activity, Asset, Bar, Calendar, Channel, Clock, DataSource, DefaultCredentials, Message, NonTradeActivity, OAuthCredentials, Order, OrderCancelation, OrderStatus, PageOfBars, PageOfQuotes, PageOfTrades, PortfolioHistory, Position, Quote, Trade, TradeUpdate, TradeFillUpdate, TradeActivity, Watchlist, } from './entities';
+export { AddToWatchList, CancelOrder, ClosePosition, CreateWatchList, DeleteWatchList, GetAccountActivities, GetAsset, GetAssets, GetBars, GetCalendar, GetOrder, GetOrders, GetPortfolioHistory, GetPosition, GetQuotes, GetTrades, GetWatchList, PlaceOrder, RemoveFromWatchList, ReplaceOrder, UpdateAccountConfigurations, UpdateWatchList, } from './params';
