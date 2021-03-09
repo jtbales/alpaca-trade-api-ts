@@ -1,4 +1,4 @@
-import { OrderSide, OrderType, OrderTimeInForce } from './entities.js';
+import { OrderSide, OrderTimeInForce } from './entities.js';
 export interface AddToWatchList {
     uuid: string;
     symbol: string;
@@ -85,19 +85,15 @@ export interface GetPosition {
 export interface GetWatchList {
     uuid: string;
 }
-export interface PlaceOrder {
+declare type PlaceOrderBase = {
     symbol: string;
     side: OrderSide;
-    type: OrderType;
     time_in_force: OrderTimeInForce;
     qty?: number;
     notional?: number;
-    limit_price?: number;
-    stop_price?: number;
-    extended_hours?: boolean;
     client_order_id?: string;
-    trail_price?: number;
-    trail_percent?: number;
+};
+declare type PlaceOrderClassBase = {
     order_class?: 'simple' | 'bracket' | 'oco' | 'oto';
     take_profit?: {
         limit_price: number;
@@ -106,7 +102,31 @@ export interface PlaceOrder {
         stop_price: number;
         limit_price?: number;
     };
-}
+};
+export declare type PlaceOrder = PlaceMarketOrder | PlaceLimitOrder | PlaceStopOrder | PlaceStopLimitOrder | PlaceTrailingStopOrder;
+export declare type PlaceMarketOrder = PlaceOrderBase & PlaceOrderClassBase & {
+    type: 'market';
+};
+export declare type PlaceLimitOrder = PlaceOrderBase & PlaceOrderClassBase & {
+    type: 'limit';
+    limit_price: number;
+    extended_hours?: boolean;
+};
+export declare type PlaceStopOrder = PlaceOrderBase & PlaceOrderClassBase & {
+    type: 'stop';
+    stop_price?: number;
+};
+export declare type PlaceStopLimitOrder = PlaceOrderBase & PlaceOrderClassBase & {
+    type: 'stop_limit';
+    limit_price: number;
+    stop_price: number;
+};
+export declare type PlaceTrailingStopOrder = PlaceOrderBase & {
+    type: 'trailing_stop';
+    client_order_id?: string;
+    trail_price: number;
+    trail_percent: number;
+};
 export interface RemoveFromWatchList {
     uuid: string;
     symbol: string;
@@ -130,3 +150,4 @@ export interface UpdateWatchList {
     name?: string;
     symbols?: string[];
 }
+export {};
