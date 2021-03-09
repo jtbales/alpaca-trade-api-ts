@@ -94,7 +94,7 @@ export interface Account {
   /**
    * Get the raw data, exactly as it came from Alpaca
    */
-  raw(): RawAccount;
+  raw?: () => RawAccount;
 
   /**
    * If true, the account activity by user is prohibited.
@@ -389,7 +389,7 @@ export interface Clock {
   /**
    * Get the raw data, exactly as it came from Alpaca
    */
-  raw(): RawClock;
+  raw?: () => RawClock;
 
   /**
    * Current timestamp
@@ -443,7 +443,7 @@ export interface RawPageOfTrades {
 /** A trade which occurred. */
 export interface Trade {
   /** Get the raw data as it came from Alpaca. */
-  raw(): RawTrade;
+  raw?: () => RawTrade;
   /** Timestamp in RFC-3339 format with nanosecond precision. */
   t: Date;
   /** Exchange where the trade happened. */
@@ -463,7 +463,7 @@ export interface Trade {
 /** A page of one or many trades. */
 export interface PageOfTrades {
   /** Get the raw data as it came from Alpaca. */
-  raw(): RawPageOfTrades;
+  raw?: () => RawPageOfTrades;
   /** Array of trades. */
   trades: Trade[];
   /** Symbol that was queried. */
@@ -505,7 +505,7 @@ export interface RawPageOfQuotes {
 /** A quote for a symbol. */
 export interface Quote {
   /** Get the raw data as it came from Alpaca. */
-  raw(): RawQuote;
+  raw?: () => RawQuote;
   /** Timestamp in Date format. */
   t: Date;
   /** Ask exchange. */
@@ -527,7 +527,7 @@ export interface Quote {
 /** A page of one or many quotes. */
 export interface PageOfQuotes {
   /** Get the raw data as it came from Alpaca. */
-  raw(): RawPageOfQuotes;
+  raw?: () => RawPageOfQuotes;
   /** Array of quotes. */
   quotes: Quote[];
   /** Symbol that was queried. */
@@ -565,7 +565,7 @@ export interface RawPageOfBars {
 /** A bar for a symbol. */
 export interface Bar {
   /** Get the raw data as it came from Alpaca. */
-  raw(): RawBar;
+  raw?: () => RawBar;
   /** Timestamp in Date format. */
   t: Date;
   /** Open price. */
@@ -583,7 +583,7 @@ export interface Bar {
 /** A page of one or many bars. */
 export interface PageOfBars {
   /** Get the raw data as it came from Alpaca. */
-  raw(): RawPageOfBars;
+  raw?: () => RawPageOfBars;
   /** Array of bars. */
   bars: Bar[];
   /** Symbol that was queried. */
@@ -1030,7 +1030,7 @@ export interface Position {
   /**
    * Get the raw data, exactly as it came from Alpaca
    */
-  raw(): RawPosition;
+  raw?: () => RawPosition;
 
   /**
    * Asset ID
@@ -1313,7 +1313,7 @@ export interface TradeActivity {
   /**
    * Get the raw data, exactly as it came from Alpaca
    */
-  raw(): RawTradeActivity;
+  raw?: () => RawTradeActivity;
 
   /**
    * FILL
@@ -1376,7 +1376,7 @@ export interface NonTradeActivity {
   /**
    * Get the raw data, exactly as it came from Alpaca
    */
-  raw(): RawNonTradeActivity;
+  raw?: () => RawNonTradeActivity;
 
   /**
    * Activity type
