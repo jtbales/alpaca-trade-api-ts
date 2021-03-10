@@ -859,7 +859,7 @@ export interface Order {
   /**
    * When the order failed
    */
-  failed_at: Date;
+  failed_at: Date | null;
 
   /**
    * When the order was last replaced
@@ -1427,15 +1427,7 @@ export type TradeUpdate = TradeUpdateBase | TradeFillUpdate;
 export type TradeUpdateBase = {
   event: OrderStatus;
   price: string;
-  order: {
-    id: string;
-    client_order_id: string;
-    asset_id: string;
-    symbol: string;
-    exchange: string;
-    asset_class: string;
-    side: string;
-  };
+  order: Order;
 };
 export type TradeFillUpdate = TradeUpdateBase & {
   event: 'filled' | 'partially_filled';
