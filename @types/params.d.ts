@@ -103,7 +103,7 @@ declare type PlaceOrderClassBase = {
         limit_price?: number;
     };
 };
-export declare type PlaceOrderUnion = {
+export declare type PlaceOrder = {
     symbol: string;
     side: OrderSide;
     type: OrderType;
@@ -125,7 +125,7 @@ export declare type PlaceOrderUnion = {
         limit_price?: number;
     };
 };
-export declare type PlaceOrder = PlaceMarketOrder | PlaceLimitOrder | PlaceStopOrder | PlaceStopLimitOrder | PlaceTrailingStopOrder;
+export declare type PlaceOrderUnion = PlaceMarketOrder | PlaceLimitOrder | PlaceStopOrder | PlaceStopLimitOrder | PlaceTrailingStopOrder;
 export declare type PlaceMarketOrder = PlaceOrderBase & PlaceOrderClassBase & {
     type: 'market';
 };
