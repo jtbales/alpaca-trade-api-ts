@@ -57,6 +57,7 @@ export {
   GetQuotes,
   GetTrades,
   GetWatchList,
+  PlaceOrderUnion,
   PlaceOrder,
   PlaceMarketOrder,
   PlaceLimitOrder,

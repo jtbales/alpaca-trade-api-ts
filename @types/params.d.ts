@@ -1,4 +1,4 @@
-import { OrderSide, OrderTimeInForce } from './entities.js';
+import { OrderSide, OrderTimeInForce, OrderType } from './entities.js';
 export interface AddToWatchList {
     uuid: string;
     symbol: string;
@@ -103,6 +103,28 @@ declare type PlaceOrderClassBase = {
         limit_price?: number;
     };
 };
+export declare type PlaceOrderUnion = {
+    symbol: string;
+    side: OrderSide;
+    type: OrderType;
+    time_in_force: OrderTimeInForce;
+    qty?: number;
+    notional?: number;
+    limit_price?: number;
+    stop_price?: number;
+    extended_hours?: boolean;
+    client_order_id?: string;
+    trail_price?: number;
+    trail_percent?: number;
+    order_class?: 'simple' | 'bracket' | 'oco' | 'oto';
+    take_profit?: {
+        limit_price: number;
+    };
+    stop_loss?: {
+        stop_price: number;
+        limit_price?: number;
+    };
+};
 export declare type PlaceOrder = PlaceMarketOrder | PlaceLimitOrder | PlaceStopOrder | PlaceStopLimitOrder | PlaceTrailingStopOrder;
 export declare type PlaceMarketOrder = PlaceOrderBase & PlaceOrderClassBase & {
     type: 'market';
@@ -114,7 +136,7 @@ export declare type PlaceLimitOrder = PlaceOrderBase & PlaceOrderClassBase & {
 };
 export declare type PlaceStopOrder = PlaceOrderBase & PlaceOrderClassBase & {
     type: 'stop';
-    stop_price?: number;
+    stop_price: number;
 };
 export declare type PlaceStopLimitOrder = PlaceOrderBase & PlaceOrderClassBase & {
     type: 'stop_limit';
@@ -123,7 +145,6 @@ export declare type PlaceStopLimitOrder = PlaceOrderBase & PlaceOrderClassBase &
 };
 export declare type PlaceTrailingStopOrder = PlaceOrderBase & {
     type: 'trailing_stop';
-    client_order_id?: string;
     trail_price: number;
     trail_percent: number;
 };

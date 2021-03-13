@@ -1,4 +1,4 @@
-import { OrderSide, OrderTimeInForce } from './entities.js';
+import { OrderSide, OrderTimeInForce, OrderType } from './entities.js';
 
 export interface AddToWatchList {
   uuid: string;
@@ -103,29 +103,6 @@ export interface GetWatchList {
   uuid: string;
 }
 
-// type PlaceOrderUnion = {
-//   symbol: string;
-//   side: OrderSide;
-//   type: OrderType;
-//   time_in_force: OrderTimeInForce;
-//   qty?: number;
-//   notional?: number;
-//   limit_price?: number;
-//   stop_price?: number;
-//   extended_hours?: boolean;
-//   client_order_id?: string;
-//   trail_price?: number;
-//   trail_percent?: number;
-//   order_class?: 'simple' | 'bracket' | 'oco' | 'oto';
-//   take_profit?: {
-//     limit_price: number;
-//   };
-//   stop_loss?: {
-//     stop_price: number;
-//     limit_price?: number;
-//   };
-// };
-
 type PlaceOrderBase = {
   symbol: string;
   side: OrderSide;
@@ -136,6 +113,29 @@ type PlaceOrderBase = {
 };
 
 type PlaceOrderClassBase = {
+  order_class?: 'simple' | 'bracket' | 'oco' | 'oto';
+  take_profit?: {
+    limit_price: number;
+  };
+  stop_loss?: {
+    stop_price: number;
+    limit_price?: number;
+  };
+};
+
+export type PlaceOrderUnion = {
+  symbol: string;
+  side: OrderSide;
+  type: OrderType;
+  time_in_force: OrderTimeInForce;
+  qty?: number;
+  notional?: number;
+  limit_price?: number;
+  stop_price?: number;
+  extended_hours?: boolean;
+  client_order_id?: string;
+  trail_price?: number;
+  trail_percent?: number;
   order_class?: 'simple' | 'bracket' | 'oco' | 'oto';
   take_profit?: {
     limit_price: number;
@@ -168,7 +168,7 @@ export type PlaceLimitOrder = PlaceOrderBase &
 export type PlaceStopOrder = PlaceOrderBase &
   PlaceOrderClassBase & {
     type: 'stop';
-    stop_price?: number;
+    stop_price: number;
   };
 
 export type PlaceStopLimitOrder = PlaceOrderBase &
@@ -180,7 +180,6 @@ export type PlaceStopLimitOrder = PlaceOrderBase &
 
 export type PlaceTrailingStopOrder = PlaceOrderBase & {
   type: 'trailing_stop';
-  client_order_id?: string;
   trail_price: number;
   trail_percent: number;
 };
