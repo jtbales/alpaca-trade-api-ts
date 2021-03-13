@@ -123,7 +123,7 @@ type PlaceOrderClassBase = {
   };
 };
 
-export type PlaceOrderUnion = {
+export type PlaceOrder = {
   symbol: string;
   side: OrderSide;
   type: OrderType;
@@ -146,7 +146,7 @@ export type PlaceOrderUnion = {
   };
 };
 
-export type PlaceOrder =
+export type PlaceOrderUnion =
   | PlaceMarketOrder
   | PlaceLimitOrder
   | PlaceStopOrder
