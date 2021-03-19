@@ -1200,16 +1200,13 @@ export interface NonTradeActivity {
 }
 export declare type RawActivity = RawTradeActivity | RawNonTradeActivity;
 export declare type Activity = TradeActivity | NonTradeActivity;
-export declare type TradeUpdate = TradeUpdateBase | TradeFillUpdate;
-export declare type TradeUpdateBase = {
-    event: OrderStatus;
+export declare type TradeUpdateEvent = 'calculated' | 'canceled' | 'done_for_day' | 'expired' | 'fill' | 'new' | 'order_cancel_rejected' | 'order_replace_rejected' | 'partial_fill' | 'pending_cancel' | 'pending_new' | 'pending_replace' | 'rejected' | 'replaced' | 'stopped' | 'suspended';
+export declare type TradeUpdate = {
+    event: TradeUpdateEvent;
     price: string;
+    timestamp?: string;
+    position_qty?: string;
     order: Order;
-};
-export declare type TradeFillUpdate = TradeUpdateBase & {
-    event: 'filled' | 'partially_filled';
-    timestamp: string;
-    position_qty: string;
 };
 export interface Watchlist {
     /**

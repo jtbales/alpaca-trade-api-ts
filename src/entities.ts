@@ -1423,18 +1423,31 @@ export type RawActivity = RawTradeActivity | RawNonTradeActivity;
 
 export type Activity = TradeActivity | NonTradeActivity;
 
-export type TradeUpdate = TradeUpdateBase | TradeFillUpdate;
-export type TradeUpdateBase = {
-  event: OrderStatus;
+export type TradeUpdateEvent =
+  | 'calculated'
+  | 'canceled'
+  | 'done_for_day'
+  | 'expired'
+  | 'fill'
+  | 'new'
+  | 'order_cancel_rejected'
+  | 'order_replace_rejected'
+  | 'partial_fill'
+  | 'pending_cancel'
+  | 'pending_new'
+  | 'pending_replace'
+  | 'rejected'
+  | 'replaced'
+  | 'stopped'
+  | 'suspended';
+
+export type TradeUpdate = {
+  event: TradeUpdateEvent;
   price: string;
+  timestamp?: string;
+  position_qty?: string;
   order: Order;
 };
-export type TradeFillUpdate = TradeUpdateBase & {
-  event: 'filled' | 'partially_filled';
-  timestamp: string;
-  position_qty: string;
-};
-
 export interface Watchlist {
   /**
    * account ID
