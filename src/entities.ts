@@ -763,10 +763,15 @@ export type OrderStatus =
   | 'pending_replace'
 
   /**
-   * (Uncommon) The order has been received by Alpaca, but hasn't yet been routed to the
+   * The order has been received by Alpaca, but hasn't yet been routed to the
    * execution venue. This could be seen often out side of trading session hours.
    */
   | 'accepted'
+
+  /**
+   * The order is a leg of another order, waiting for the other to be executed.
+   */
+  | 'held'
 
   /**
    * (Uncommon) The order has been received by Alpaca, and routed to the exchanges, but
