@@ -1210,7 +1210,7 @@ export declare type TradeUpdate = {
     price: string;
     timestamp?: string;
     position_qty?: string;
-    order: Order;
+    order: RawOrder;
 };
 export interface Watchlist {
     /**
