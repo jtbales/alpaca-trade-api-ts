@@ -1207,7 +1207,7 @@ export declare type Activity = TradeActivity | NonTradeActivity;
 export declare type TradeUpdateEvent = 'calculated' | 'canceled' | 'done_for_day' | 'expired' | 'fill' | 'new' | 'order_cancel_rejected' | 'order_replace_rejected' | 'partial_fill' | 'pending_cancel' | 'pending_new' | 'pending_replace' | 'rejected' | 'replaced' | 'stopped' | 'suspended';
 export declare type TradeUpdate = {
     event: TradeUpdateEvent;
-    price: string;
+    price?: string;
     timestamp?: string;
     position_qty?: string;
     order: RawOrder;

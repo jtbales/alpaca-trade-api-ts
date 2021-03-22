@@ -1448,7 +1448,7 @@ export type TradeUpdateEvent =
 
 export type TradeUpdate = {
   event: TradeUpdateEvent;
-  price: string;
+  price?: string;
   timestamp?: string;
   position_qty?: string;
   order: RawOrder;
