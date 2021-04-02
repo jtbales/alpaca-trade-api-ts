@@ -1,8 +1,8 @@
 {
-  "name": "@master-chief/alpaca",
+  "name": "@jtbales/alpaca-trade-api-ts",
   "version": "5.1.5-beta",
   "description": "A TypeScript Node.js library for the https://alpaca.markets REST API and WebSocket streams.",
-  "author": "117",
+  "author": "johntbales",
   "contributors": [
     "lbstr",
     "AqilCont",
@@ -46,7 +46,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/117/alpaca"
+    "url": "https://github.com/jtbales/alpaca-trade-api-ts"
   },
   "scripts": {
     "build": "npm run clean && npm i && npm run build:mjs && npm run build:cjs && npm run build:esm && npm run build:browser && npm run build:esm_bundle",
