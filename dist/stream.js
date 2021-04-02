@@ -47,7 +47,7 @@ class AlpacaStream extends eventemitter3_1.default {
                     break;
                 case 'market_data':
                     // {"action":"auth","key":"PK*****","secret":"*************"}
-                    message = Object.assign({ action: 'auth' }, params.credentials);
+                    message = { action: 'auth', ...params.credentials };
                     break;
             }
             this.connection.send(JSON.stringify(message));
