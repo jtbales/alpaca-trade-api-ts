@@ -49,8 +49,7 @@
     "url": "https://github.com/117/alpaca"
   },
   "scripts": {
-    "build": "tsc --outDir dist --esModuleInterop --moduleResolution node  --module CommonJS --target ES2020 -d --declarationDir @types",
-    "build:all": "npm run clean && npm i && npm run build:mjs && npm run build:cjs && npm run build:esm  && npm run build:browser && npm run build:esm_bundle",
+    "build": "npm run clean && npm i && npm run build:mjs && npm run build:cjs && npm run build:esm && npm run build:browser && npm run build:esm_bundle",
     "build:mjs": "tsc --outDir dist/mjs --allowSyntheticDefaultImports -d --declarationDir @types --module esnext --target esnext",
     "build:cjs": "tsc --outDir dist/cjs --esModuleInterop --moduleResolution node  --module CommonJS --target ES2015 -d false && map dist/cjs js cjs",
     "build:esm": "rollup -c conf/rollup/dist/esm.js",

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AlpacaStream = void 0;
 const isomorphic_ws_1 = __importDefault(require("isomorphic-ws"));
 const eventemitter3_1 = __importDefault(require("eventemitter3"));
-const urls_js_1 = __importDefault(require("./urls.js"));
+const urls_js_1 = __importDefault(require("./urls.cjs"));
 class AlpacaStream extends eventemitter3_1.default {
     constructor(params) {
         // construct EventEmitter
@@ -47,7 +47,7 @@ class AlpacaStream extends eventemitter3_1.default {
                     break;
                 case 'market_data':
                     // {"action":"auth","key":"PK*****","secret":"*************"}
-                    message = { action: 'auth', ...params.credentials };
+                    message = Object.assign({ action: 'auth' }, params.credentials);
                     break;
             }
             this.connection.send(JSON.stringify(message));

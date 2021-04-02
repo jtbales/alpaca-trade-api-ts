@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 function account(rawAccount) {
     if (!rawAccount) {
         return undefined;
@@ -275,7 +273,7 @@ function number(numStr) {
         return numStr;
     return parseFloat(numStr);
 }
-exports.default = {
+export default {
     account,
     activities,
     clock,

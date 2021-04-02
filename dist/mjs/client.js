@@ -1,19 +1,13 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AlpacaClient = void 0;
-const bottleneck_1 = __importDefault(require("bottleneck"));
-const qs_1 = __importDefault(require("qs"));
-const isomorphic_unfetch_1 = __importDefault(require("isomorphic-unfetch"));
-const urls_js_1 = __importDefault(require("./urls.js"));
-const parse_js_1 = __importDefault(require("./parse.js"));
-const unifetch = typeof fetch !== 'undefined' ? fetch : isomorphic_unfetch_1.default;
-class AlpacaClient {
+import Bottleneck from 'bottleneck';
+import qs from 'qs';
+import isofetch from 'isomorphic-unfetch';
+import urls from './urls.js';
+import parse from './parse.js';
+const unifetch = typeof fetch !== 'undefined' ? fetch : isofetch;
+export class AlpacaClient {
     constructor(params) {
         this.params = params;
-        this.limiter = new bottleneck_1.default({
+        this.limiter = new Bottleneck({
             reservoir: 200,
             reservoirRefreshAmount: 200,
             reservoirRefreshInterval: 60 * 1000,
@@ -43,22 +37,22 @@ class AlpacaClient {
         }
     }
     async getAccount() {
-        return parse_js_1.default.account(await this.request({
+        return parse.account(await this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/account`,
+            url: `${urls.rest.account}/account`,
         }));
     }
     async getOrder(params) {
-        return parse_js_1.default.order(await this.request({
+        return parse.order(await this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/orders/${params.order_id || params.client_order_id}`,
+            url: `${urls.rest.account}/orders/${params.order_id || params.client_order_id}`,
             data: { nested: params.nested },
         }));
     }
     async getOrders(params = {}) {
-        return parse_js_1.default.orders(await this.request({
+        return parse.orders(await this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/orders`,
+            url: `${urls.rest.account}/orders`,
             data: {
                 ...params,
                 symbols: params.symbols ? params.symbols.join(',') : undefined,
@@ -66,137 +60,137 @@ class AlpacaClient {
         }));
     }
     async placeOrder(params) {
-        return parse_js_1.default.order(await this.request({
+        return parse.order(await this.request({
             method: 'POST',
-            url: `${urls_js_1.default.rest.account}/orders`,
+            url: `${urls.rest.account}/orders`,
             data: params,
         }));
     }
     async replaceOrder(params) {
-        return parse_js_1.default.order(await this.request({
+        return parse.order(await this.request({
             method: 'PATCH',
-            url: `${urls_js_1.default.rest.account}/orders/${params.order_id}`,
+            url: `${urls.rest.account}/orders/${params.order_id}`,
             data: params,
         }));
     }
     cancelOrder(params) {
         return this.request({
             method: 'DELETE',
-            url: `${urls_js_1.default.rest.account}/orders/${params.order_id}`,
+            url: `${urls.rest.account}/orders/${params.order_id}`,
             isJSON: false,
         });
     }
     async cancelOrders() {
-        return parse_js_1.default.canceled_orders(await this.request({
+        return parse.canceled_orders(await this.request({
             method: 'DELETE',
-            url: `${urls_js_1.default.rest.account}/orders`,
+            url: `${urls.rest.account}/orders`,
         }));
     }
     async getPosition(params) {
-        return parse_js_1.default.position(await this.request({
+        return parse.position(await this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/positions/${params.symbol}`,
+            url: `${urls.rest.account}/positions/${params.symbol}`,
         }));
     }
     async getPositions() {
-        return parse_js_1.default.positions(await this.request({
+        return parse.positions(await this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/positions`,
+            url: `${urls.rest.account}/positions`,
         }));
     }
     async closePosition(params) {
-        return parse_js_1.default.order(await this.request({
+        return parse.order(await this.request({
             method: 'DELETE',
-            url: `${urls_js_1.default.rest.account}/positions/${params.symbol}`,
+            url: `${urls.rest.account}/positions/${params.symbol}`,
         }));
     }
     async closePositions() {
-        return parse_js_1.default.orders(await this.request({
+        return parse.orders(await this.request({
             method: 'DELETE',
-            url: `${urls_js_1.default.rest.account}/positions`,
+            url: `${urls.rest.account}/positions`,
         }));
     }
     getAsset(params) {
         return this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/assets/${params.asset_id_or_symbol}`,
+            url: `${urls.rest.account}/assets/${params.asset_id_or_symbol}`,
         });
     }
     getAssets(params) {
         return this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/assets`,
+            url: `${urls.rest.account}/assets`,
             data: params,
         });
     }
     getWatchlist(params) {
         return this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/watchlists/${params.uuid}`,
+            url: `${urls.rest.account}/watchlists/${params.uuid}`,
         });
     }
     getWatchlists() {
         return this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/watchlists`,
+            url: `${urls.rest.account}/watchlists`,
         });
     }
     createWatchlist(params) {
         return this.request({
             method: 'POST',
-            url: `${urls_js_1.default.rest.account}/watchlists`,
+            url: `${urls.rest.account}/watchlists`,
             data: params,
         });
     }
     updateWatchlist(params) {
         return this.request({
             method: 'PUT',
-            url: `${urls_js_1.default.rest.account}/watchlists/${params.uuid}`,
+            url: `${urls.rest.account}/watchlists/${params.uuid}`,
             data: params,
         });
     }
     addToWatchlist(params) {
         return this.request({
             method: 'POST',
-            url: `${urls_js_1.default.rest.account}/watchlists/${params.uuid}`,
+            url: `${urls.rest.account}/watchlists/${params.uuid}`,
             data: params,
         });
     }
     removeFromWatchlist(params) {
         return this.request({
             method: 'DELETE',
-            url: `${urls_js_1.default.rest.account}/watchlists/${params.uuid}/${params.symbol}`,
+            url: `${urls.rest.account}/watchlists/${params.uuid}/${params.symbol}`,
         });
     }
     deleteWatchlist(params) {
         return this.request({
             method: 'DELETE',
-            url: `${urls_js_1.default.rest.account}/watchlists/${params.uuid}`,
+            url: `${urls.rest.account}/watchlists/${params.uuid}`,
         });
     }
     getCalendar(params) {
         return this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/calendar`,
+            url: `${urls.rest.account}/calendar`,
             data: params,
         });
     }
     async getClock() {
-        return parse_js_1.default.clock(await this.request({
+        return parse.clock(await this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/clock`,
+            url: `${urls.rest.account}/clock`,
         }));
     }
     getAccountConfigurations() {
         return this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/account/configurations`,
+            url: `${urls.rest.account}/account/configurations`,
         });
     }
     updateAccountConfigurations(params) {
         return this.request({
             method: 'PATCH',
-            url: `${urls_js_1.default.rest.account}/account/configurations`,
+            url: `${urls.rest.account}/account/configurations`,
             data: params,
         });
     }
@@ -204,37 +198,37 @@ class AlpacaClient {
         if (params.activity_types && Array.isArray(params.activity_types)) {
             params.activity_types = params.activity_types.join(',');
         }
-        return parse_js_1.default.activities(await this.request({
+        return parse.activities(await this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/account/activities${params.activity_type ? '/'.concat(params.activity_type) : ''}`,
+            url: `${urls.rest.account}/account/activities${params.activity_type ? '/'.concat(params.activity_type) : ''}`,
             data: { ...params, activity_type: undefined },
         }));
     }
     getPortfolioHistory(params) {
         return this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.account}/account/portfolio/history`,
+            url: `${urls.rest.account}/account/portfolio/history`,
             data: params,
         });
     }
     async getTrades(params) {
-        return parse_js_1.default.pageOfTrades(await this.request({
+        return parse.pageOfTrades(await this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.market_data}/stocks/${params.symbol}/trades`,
+            url: `${urls.rest.market_data}/stocks/${params.symbol}/trades`,
             data: { ...params, symbol: undefined },
         }));
     }
     async getQuotes(params) {
-        return parse_js_1.default.pageOfQuotes(await this.request({
+        return parse.pageOfQuotes(await this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.market_data}/stocks/${params.symbol}/quotes`,
+            url: `${urls.rest.market_data}/stocks/${params.symbol}/quotes`,
             data: { ...params, symbol: undefined },
         }));
     }
     async getBars(params) {
-        return parse_js_1.default.pageOfBars(await this.request({
+        return parse.pageOfBars(await this.request({
             method: 'GET',
-            url: `${urls_js_1.default.rest.market_data}/stocks/${params.symbol}/bars`,
+            url: `${urls.rest.market_data}/stocks/${params.symbol}/bars`,
             data: { ...params, symbol: undefined },
         }));
     }
@@ -260,7 +254,7 @@ class AlpacaClient {
             }
             // build query
             if (params.method != 'POST' && params.method != 'PATCH') {
-                query = '?'.concat(qs_1.default.stringify(params.data));
+                query = '?'.concat(qs.stringify(params.data));
                 params.data = undefined;
             }
         }
@@ -289,4 +283,3 @@ class AlpacaClient {
         return result;
     }
 }
-exports.AlpacaClient = AlpacaClient;
