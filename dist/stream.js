@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AlpacaStream = void 0;
 const isomorphic_ws_1 = __importDefault(require("isomorphic-ws"));
 const eventemitter3_1 = __importDefault(require("eventemitter3"));
-const urls_js_1 = __importDefault(require("./urls.cjs"));
+const urls_js_1 = __importDefault(require("./urls.js"));
 class AlpacaStream extends eventemitter3_1.default {
     constructor(params) {
         // construct EventEmitter
