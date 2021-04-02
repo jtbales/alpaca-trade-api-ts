@@ -29,11 +29,11 @@
   "unpkg": "./dist/alpaca.js",
   "jsdelivr": "./dist/alpaca.js",
   "browser": "./dist/alpaca.browser.min.js",
-  "main": "./dist/mjs/index.js",
+  "main": "./dist/cjs/index.js",
   "module": "./dist/mjs/index.js",
   "exports": {
     "import": "./dist/mjs/index.js",
-    "require": "./dist/cjs/index.cjs",
+    "require": "./dist/cjs/index.js",
     "default": "./dist/alpaca.browser.min.js"
   },
   "engines": {
@@ -41,7 +41,8 @@
   },
   "files": [
     "dist/",
-    "@types/"
+    "@types/",
+    "./"
   ],
   "publishConfig": {
     "access": "public"
@@ -52,7 +53,7 @@
   },
   "scripts": {
     "build": "npm run clean && npm i && npm run build:cjs:only",
-    "build:cjs:only": "tsc --outDir ./ --esModuleInterop --moduleResolution node  --module CommonJS --target ES2015 -d --declarationDir @types",
+    "build:cjs:only": "tsc --outDir dist/cjs --esModuleInterop --moduleResolution node  --module CommonJS --target ES2015 -d --declarationDir @types",
     "build:all": "npm run clean && npm i && npm run build:mjs && npm run build:cjs && npm run build:esm && npm run build:browser && npm run build:esm_bundle",
     "build:mjs": "tsc --outDir dist/mjs --allowSyntheticDefaultImports -d --declarationDir @types --module esnext --target esnext",
     "build:cjs": "tsc --outDir dist/cjs --esModuleInterop --moduleResolution node  --module CommonJS --target ES2015 -d false && map dist/cjs js cjs",
