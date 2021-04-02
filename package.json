@@ -40,10 +40,12 @@
     "node": ">=14"
   },
   "files": [
-    "src/",
     "dist/",
     "@types/"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jtbales/alpaca-trade-api-ts.git"
