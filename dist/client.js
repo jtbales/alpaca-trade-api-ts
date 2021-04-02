@@ -16,8 +16,8 @@ exports.AlpacaClient = void 0;
 const bottleneck_1 = __importDefault(require("bottleneck"));
 const qs_1 = __importDefault(require("qs"));
 const isomorphic_unfetch_1 = __importDefault(require("isomorphic-unfetch"));
-const urls_js_1 = __importDefault(require("./urls.cjs"));
-const parse_js_1 = __importDefault(require("./parse.cjs"));
+const urls_js_1 = __importDefault(require("./urls.js"));
+const parse_js_1 = __importDefault(require("./parse.js"));
 const unifetch = typeof fetch !== 'undefined' ? fetch : isomorphic_unfetch_1.default;
 class AlpacaClient {
     constructor(params) {
